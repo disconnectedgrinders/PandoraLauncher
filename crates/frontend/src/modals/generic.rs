@@ -3,13 +3,20 @@ use std::sync::Arc;
 use bridge::modal_action::{ModalAction, ProgressTrackerFinishType};
 use gpui::{prelude::*, *};
 use gpui_component::{
-    WindowExt, button::{Button, ButtonVariant, ButtonVariants}, notification::Notification, v_flex
+    WindowExt, button::{Button, ButtonVariant, ButtonVariants}, notification::Notification, scroll::ScrollableElement as _, v_flex
 };
 
 use crate::{component::{
     error_alert::ErrorAlert,
     progress_bar::{ProgressBar, ProgressBarColor},
 }, icon::PandoraIcon};
+
+pub fn scrollable_modal_content(content: impl IntoElement) -> impl IntoElement {
+    div()
+        .max_h(px(500.))
+        .overflow_y_scrollbar()
+        .child(content)
+}
 
 pub fn show_notification(
     window: &mut Window,
