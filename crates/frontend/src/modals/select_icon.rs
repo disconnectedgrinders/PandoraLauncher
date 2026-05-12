@@ -7,7 +7,7 @@ use gpui_component::{
 };
 use parking_lot::RwLock;
 
-use crate::{icon::PandoraIcon};
+use crate::{icon::PandoraIcon, modals::generic::padded_modal_content};
 
 pub fn open_select_icon(
     selected: Box<dyn FnOnce(EmbeddedOrRaw, &mut App)>,
@@ -76,7 +76,7 @@ pub fn open_select_icon(
 
         dialog
             .title(t::instance::select_icon())
-            .child(content)
+            .child(padded_modal_content(content))
     });
 
 }
