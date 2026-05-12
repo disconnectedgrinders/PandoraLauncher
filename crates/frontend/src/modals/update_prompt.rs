@@ -1,10 +1,11 @@
-
 use bridge::{handle::BackendHandle, modal_action::ModalAction};
 use gpui::{prelude::*, *};
 use gpui_component::{
     WindowExt, button::{Button, ButtonVariants}, h_flex, v_flex
 };
 use schema::pandora_update::UpdatePrompt;
+
+use crate::modals::generic::padded_modal_content;
 
 
 pub fn open_update_prompt(
@@ -53,13 +54,13 @@ pub fn open_update_prompt(
         dialog
             .title(title)
             .overlay_closable(false)
-            .child(v_flex()
+            .child(padded_modal_content(v_flex()
                 .gap_2()
                 .child(v_flex()
                     .child(old_version.clone())
                     .child(new_version.clone())
                     .child(size.clone())
-                ).child(buttons))
+                ).child(buttons)))
     });
 
 }
